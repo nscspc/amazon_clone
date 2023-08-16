@@ -38,6 +38,7 @@ class TopCategories extends StatelessWidget {
                     ),
                   ),
                 ),
+                // test comment
                 Text(
                   GlobalVariables.categoryImages[index]['title']!,
                   style: const TextStyle(
