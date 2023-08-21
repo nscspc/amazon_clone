@@ -12,6 +12,7 @@ void showSnackBar(BuildContext context, String text) {
 }
 
 Future<List<File>> pickImages() async {
+  // dart.io is required not dart.html.
   List<File> images = [];
   try {
     var files = await FilePicker.platform.pickFiles(

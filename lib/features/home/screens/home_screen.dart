@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_amazon_clone/constants/global_variables.dart';
 import 'package:flutter_amazon_clone/features/home/widgets/address_box.dart';
+import 'package:flutter_amazon_clone/features/home/widgets/carousel_image.dart';
+import 'package:flutter_amazon_clone/features/home/widgets/deal_of_day.dart';
 import 'package:flutter_amazon_clone/features/home/widgets/top_categories.dart';
 import 'package:flutter_amazon_clone/providers/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -102,9 +104,9 @@ class _HomeScreenState extends State<HomeScreen> {
             AddressBox(),
             SizedBox(height: 10),
             TopCategories(),
-            // SizedBox(height: 10),
-            // CarouselImage(),
-            // DealOfDay(),
+            SizedBox(height: 10),
+            CarouselImage(),
+            DealOfDay(),
           ],
         ),
       ),

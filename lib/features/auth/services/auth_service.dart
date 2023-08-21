@@ -5,6 +5,7 @@ import 'package:flutter_amazon_clone/common/bottom_bar.dart';
 import 'package:flutter_amazon_clone/constants/error_handling.dart';
 import 'package:flutter_amazon_clone/constants/global_variables.dart';
 import 'package:flutter_amazon_clone/constants/utils.dart';
+import 'package:flutter_amazon_clone/features/admin/screens/admin_screen.dart';
 import 'package:flutter_amazon_clone/features/home/screens/home_screen.dart';
 import 'package:flutter_amazon_clone/models/user.dart';
 import 'package:flutter_amazon_clone/providers/user_provider.dart';
@@ -101,8 +102,13 @@ class AuthService {
               .body); // if we are outside the build function then we have to set lister:false.
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
 
-          Navigator.pushNamedAndRemoveUntil(
-              context, BottomBar.routeName, (route) => false);
+          Provider.of<UserProvider>(context, listen: false).user.type == 'user'
+              ? Navigator.pushNamedAndRemoveUntil(
+                  context, BottomBar.routeName, (route) => false)
+              : Navigator.pushNamedAndRemoveUntil(
+                  context, AdminScreen.routeName, (route) => false);
+          // Navigator.pushNamedAndRemoveUntil(
+          //     context, BottomBar.routeName, (route) => false);
 
           showSnackBar(
             context,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_amazon_clone/common/bottom_bar.dart';
 import 'package:flutter_amazon_clone/constants/global_variables.dart';
+import 'package:flutter_amazon_clone/features/admin/screens/admin_screen.dart';
 import 'package:flutter_amazon_clone/features/auth/screens/auth_screen.dart';
 import 'package:flutter_amazon_clone/features/auth/services/auth_service.dart';
 import 'package:flutter_amazon_clone/features/home/screens/home_screen.dart';
@@ -39,6 +40,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Amazon Clone',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           // background color of screen
           scaffoldBackgroundColor: GlobalVariables.backgroundColor,
@@ -60,7 +62,9 @@ class _MyAppState extends State<MyApp> {
         settings,
       ), // as it is needed to mention all the routes in main file so we can access the routes that we have mentioned in generateRoute() method in router.dart file by using onGenerateRoute property.
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? const BottomBar()
+          ? Provider.of<UserProvider>(context).user.type == 'user'
+              ? const BottomBar()
+              : const AdminScreen()
           : const AuthScreen(), // const AuthScreen(),
 
       /*
