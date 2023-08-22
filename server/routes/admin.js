@@ -1,4 +1,24 @@
 const express = require('express');
 const adminRouter = express.Router();
+const adminMiddleware = require('../middleware/adminMiddleware');
+const Product = require('../models/product');
 
-// Creating an Admin Middleware
+// Add Product
+adminRouter.post('/admin/add-product' , adminMiddleware , async (req , res) => {
+    try {
+        
+        const { name , description , images , quantity , price , category } = req.body; // these names of the field should match with the name of the fields present in product.dart file.
+        let product = new Product({
+            name,
+            description,
+            images,
+            quantity,
+            price,
+            category,
+        });
+        product = await product.save();
+
+    } catch (e) {
+        res.status(500).json({error:e.message});
+    }
+})
