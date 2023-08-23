@@ -34,3 +34,22 @@ Future<List<File>> pickImages() async {
   }
   return images;
 }
+
+Future<List<PlatformFile>> pickImagesInBytes() async {
+  // dart.io is required not dart.html.
+  List<PlatformFile> images = [];
+  try {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: true,
+    );
+    if (result != null && result.files.isNotEmpty) {
+      for (int i = 0; i < result.files.length; i++) {
+        images.add(result.files[i]);
+      }
+    }
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+  return images;
+}

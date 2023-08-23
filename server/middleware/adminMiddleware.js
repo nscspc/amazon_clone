@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const jwt = require("jsonwebtoken");
+const User = require("../models/user");
 
 const adminMiddleware = async(req , res , next) => {
     try {
@@ -17,7 +17,7 @@ const adminMiddleware = async(req , res , next) => {
         const user = await User.findById(verified.id);
         if(user.type == "user" || user.type == "seller")
         {
-        return res.status(401).json({msg : 'You are not an admin !'});
+            return res.status(401).json({msg : 'You are not an admin !'});
         }
 
         req.user = verified.id;
