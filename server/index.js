@@ -4,9 +4,11 @@ console.log("Hello World");
 const express = require('express'); // it is like importing packages in flutter :- import 'package:flutter/material.dart'; => import 'package:express/express.dart';
 const mongoose = require('mongoose');
 const cors = require("cors");
+
 // IMPORTS FROM OTHER FILES
 const authRouter = require('./routes/auth'); // import 'packages:flutter/screens/auth.dart'; => // Relative Importing like this is used in javascript => import './features/auth/screens/auth_screen.dart
 const adminRouter = require('./routes/admin'); // import 'packages:flutter/screens/auth.dart'; => // Relative Importing like this is used in javascript => import './features/auth/screens/auth_screen.dart
+const productRouter = require('./routes/product');
 
 // INIT
 const PORT = 3000;
@@ -19,6 +21,7 @@ app.use(cors());// cors() adds header to the response from the api , so that api
 // without using cors() , there will be XMLHttpRequest error.
 app.use(authRouter);
 app.use(adminRouter);
+app.use(productRouter);
 
 
 // Connections
