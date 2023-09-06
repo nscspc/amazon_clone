@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// const { productSchema } = require("./product");
+const { productSchema } = require("./product");
 
 const userSchema = mongoose.Schema({ //schema is the structure of model.
   name: {
@@ -38,15 +38,15 @@ const userSchema = mongoose.Schema({ //schema is the structure of model.
     type: String,
     default: "user",
   },
-//   cart: [
-//     {
-//       product: productSchema,
-//       quantity: {
-//         type: Number,
-//         required: true,
-//       },
-//     },
-//   ],
+  cart: [
+    {
+      product: productSchema,
+      quantity: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
 });
 
 const User = mongoose.model("User", userSchema); // to create model using the schema. & "User" is the name of the model.

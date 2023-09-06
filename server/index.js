@@ -9,6 +9,7 @@ const cors = require("cors");
 const authRouter = require('./routes/auth'); // import 'packages:flutter/screens/auth.dart'; => // Relative Importing like this is used in javascript => import './features/auth/screens/auth_screen.dart
 const adminRouter = require('./routes/admin'); // import 'packages:flutter/screens/auth.dart'; => // Relative Importing like this is used in javascript => import './features/auth/screens/auth_screen.dart
 const productRouter = require('./routes/product');
+const userRouter = require('./routes/user');
 
 // INIT
 const PORT = 3000;
@@ -22,6 +23,7 @@ app.use(cors());// cors() adds header to the response from the api , so that api
 app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
+app.use(userRouter);
 
 
 // Connections

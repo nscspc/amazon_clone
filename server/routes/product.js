@@ -1,7 +1,7 @@
 const express = require('express')
 const productRouter = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
-const Product = require('../models/product');
+const {Product} = require('../models/product');
 
 // /api/products?category=Essentials
 // /api/amazon?theme=dark
@@ -71,6 +71,39 @@ productRouter.post('/api/rate-product',authMiddleware, async (req , res ) => {
         //     userId: 'fjsdljflksdf',
         //     rating: 4,
         // }
+
+    } catch (e) {
+        res.status(500).json({error:e.message});
+    }
+});
+
+productRouter.get('/api/deal-of-day' , authMiddleware , async (req , res) => {
+    try {
+        let products = await Product.find({});
+        
+        // product -> totalRatings
+        // A -> 10
+        // B -> 30
+        // C -> 50
+
+        products.sort((product1,product2) => { // to sort the products according to ratings using sort method(provided by javascript) and logic for comparison between 2 products rating is defined by us.
+            let product1Sum = 0;
+            let product2Sum = 0;
+
+            for(let i=0; i<product1.ratings.length; i++)
+            {
+                product1Sum += product1.ratings[i].rating;
+            }
+
+            for(let i=0; i<product2.ratings.length; i++)
+            {
+                product2Sum += product2.ratings[i].rating;
+            }
+
+            return product1Sum < product2Sum ? 1 : -1;
+        });
+
+        res.json(products[0]);
 
     } catch (e) {
         res.status(500).json({error:e.message});
