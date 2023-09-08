@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_amazon_clone/common/custom_button.dart';
 import 'package:flutter_amazon_clone/constants/global_variables.dart';
+import 'package:flutter_amazon_clone/features/address/screens/address_screen.dart';
 import 'package:flutter_amazon_clone/features/cart/widgets/cart_product.dart';
 import 'package:flutter_amazon_clone/features/cart/widgets/cart_subtotal.dart';
 import 'package:flutter_amazon_clone/features/home/widgets/address_box.dart';
@@ -21,11 +22,11 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   void navigateToAddress(int sum) {
-    // Navigator.pushNamed(
-    //   context,
-    //   AddressScreen.routeName,
-    //   arguments: sum.toString(),
-    // );
+    Navigator.pushNamed(
+      context,
+      AddressScreen.routeName,
+      arguments: sum.toString(),
+    );
   }
 
   @override
